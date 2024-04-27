@@ -3,36 +3,43 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { AuroraBackground } from './aurora-background';
-import SecureGlobeImage from '@/public/secure-globe.png'
-import SecurePassImage from '@/public/secure-pass.png'
+import SecureGlobeImage from '@/public/secure-globe.png';
+import SecurePassImage from '@/public/secure-pass.png';
 import Image from 'next/image';
+import GlitchButton from './GlitchButton';
 export default function Hero() {
   return (
     <AuroraBackground>
       <motion.div
-        initial={{ opacity: 0.0, y: 40 }}
+        initial={{ opacity: 0, y: 30 }}
         whileInView={{ opacity: 1, y: 0 }}
         transition={{
-          delay: 0.3,
-          duration: 0.8,
-          ease: 'easeInOut',
+          duration: 0.5,
+          type: 'tween',
+          ease: 'easeInOut'
         }}
-        className="flex gap-4 h-full items-center justify-between  px-4"
+        className="flex md:flex-row flex-col gap-4 items-center justify-between px-4"
       >
-        <div className='z-10 flex gap-4 flex-col dark:text-white max-w-3xl'>
+        <div className="z-10 flex md:gap-4 flex-col md:text-start text-center text-white max-w-3xl">
+          <div className="font-extralight text-base md:text-3xl">
+            Trabzon Sosyal Bilimler Lisesi
+          </div>
           <div className="text-3xl md:text-7xl font-bold">
             Kişisel Verileri Koruma Kulübü
           </div>
-          <div className="font-extralight text-base md:text-4xl">
-            TSBL
-          </div>
+          <GlitchButton scanLines glitch/>
         </div>
 
-        <div className='w-fit z-10'>
-          <Image alt='Hero Image' src={SecurePassImage} placeholder="blur" className="w-64 object-cover" width={512} height={512}/>
+        <div className="w-fit z-10 order-first md:order-last">
+          <Image
+            alt="Hero Image"
+            src={SecurePassImage}
+            placeholder="blur"
+            className="w-48 md:w-64 2xl:w-72 object-cover"
+            width={512}
+            height={512}
+          />
         </div>
-
-
       </motion.div>
     </AuroraBackground>
   );
