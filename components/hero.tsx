@@ -1,13 +1,15 @@
 'use client';
 
-import React from 'react';
 import { motion } from 'framer-motion';
 import { AuroraBackground } from './aurora-background';
-import SecureGlobeImage from '@/public/secure-globe.png';
 import SecurePassImage from '@/public/secure-pass.png';
 import Image from 'next/image';
-import GlitchButton from './GlitchButton';
+import GlitchButton from './glitch-button';
+import { useLanguage } from '@/lib/lang';
+
 export default function Hero() {
+  const lang = useLanguage();
+
   return (
     <AuroraBackground>
       <motion.div
@@ -22,10 +24,10 @@ export default function Hero() {
       >
         <div className="z-10 flex md:gap-4 flex-col md:text-start text-center text-white max-w-3xl">
           <div className="font-extralight text-base md:text-3xl">
-            Trabzon Sosyal Bilimler Lisesi
+            {lang === "en" ? "Trabzon Social Sciences High School" : "Trabzon Sosyal Bilimler Lisesi"}
           </div>
           <div className="text-3xl md:text-7xl font-bold">
-            Kişisel Verileri Koruma Kulübü
+            {lang === "en" ? "Personal Data Protection Club" : "Kişisel Verileri Koruma Kulübü"}
           </div>
           <GlitchButton scanLines glitch/>
         </div>

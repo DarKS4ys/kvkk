@@ -40,8 +40,6 @@ const MatrixRainingCode = () => {
 
     const draw = () => {
       // Create a translucent black rectangle to create the fading effect
-      // ctx.fillStyle = "rgba(0, 0, 0, 0.04)";
-
       ctx.fillStyle = 'rgba(0, 0, 0, 0.04)';
 
       ctx.fillRect(0, 0, width, height);

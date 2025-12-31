@@ -1,12 +1,11 @@
 'use client';
 
-import React, { useRef, useState } from 'react';
+import React, { useRef, useState, useMemo, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import clsx from 'clsx';
 import { BsArrowRight } from 'react-icons/bs';
+import { useLanguage } from '@/lib/lang';
 
-const TARGET_TEXT = 'GÖZ AT ;)';
-const TARGET_TEXT_AGAIN = 'GÖZ AT';
 const CYCLES_PER_LETTER = 2;
 const SHUFFLE_TIME = 28;
 
@@ -23,6 +22,10 @@ const GlitchButton = ({
   label?: string;
   className?: string;
 }) => {
+  const lang = useLanguage()
+  const TARGET_TEXT = useMemo(() => lang === "en" ? "BROWSE ;)" : "GÖZ AT ;)", [lang])
+  const TARGET_TEXT_AGAIN = useMemo(() => lang === "en" ? "BROWSE" : "GÖZ AT", [lang])
+  
   const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const intervalRef2 = useRef<ReturnType<typeof setInterval> | null>(null);
   const [textHover, setTextHover] = useState(false);
@@ -53,6 +56,13 @@ const GlitchButton = ({
       }
     }, SHUFFLE_TIME);
   };
+
+  // Update text when language changes
+  useEffect(() => {
+    if (!textHover) {
+      setText(TARGET_TEXT)
+    }
+  }, [TARGET_TEXT, textHover])
 
   const scrambleAgain = () => {
     setTextHover(true);
